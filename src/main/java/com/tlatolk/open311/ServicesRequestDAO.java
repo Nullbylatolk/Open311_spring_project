@@ -33,6 +33,7 @@ public class ServicesRequestDAO implements ServicesRequestDAOInterface {
 	
 	private ServiceRequest construirServicesRequest(ResultSet resultSetServicesRequest) throws SQLException{
 		return new ServiceRequest(
+				resultSetServicesRequest.getInt("service_request_id"),
 				resultSetServicesRequest.getString("service_notice"),
 				resultSetServicesRequest.getString("service_name"),
 				resultSetServicesRequest.getString("address_string"),
@@ -47,17 +48,17 @@ public class ServicesRequestDAO implements ServicesRequestDAOInterface {
 			Connection conn = obtenerConexion();
 			PreparedStatement sentencia = conn.prepareStatement(QUERY_CARGARTODAS);
 			
-			ResultSet resultSetPersonas = sentencia.executeQuery();
+			ResultSet resultSetRequest = sentencia.executeQuery();
 			
-			List<ServiceRequest> todasPersonas = new ArrayList<ServiceRequest>();
+			List<ServiceRequest> allRequest = new ArrayList<ServiceRequest>();
 			
-			while(resultSetPersonas.next()) {
-				todasPersonas.add(construirServicesRequest(resultSetPersonas));
+			while(resultSetRequest.next()) {
+				allRequest.add(construirServicesRequest(resultSetRequest));
 			}
 			
 			conn.close();
 			
-			return todasPersonas;
+			return allRequest;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -101,6 +102,7 @@ public class ServicesRequestDAO implements ServicesRequestDAOInterface {
 	        conn.setAutoCommit(false); // Iniciar una transacción
 
 
+	        
 
 	        // Eliminar de la tabla service
 	        String deleteServiceQuery = "DELETE FROM  request_services WHERE service_request_id = ?";

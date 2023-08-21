@@ -50,17 +50,17 @@ public class ServicesDAO implements ServicesDAOInterface{
 			Connection conn = obtenerConexion();
 			PreparedStatement sentencia = conn.prepareStatement(QUERY_CARGARTODAS);
 			
-			ResultSet resultSetPersonas = sentencia.executeQuery();
+			ResultSet resultSetServices = sentencia.executeQuery();
 			
-			List<Services> todasPersonas = new ArrayList<Services>();
+			List<Services> allServices = new ArrayList<Services>();
 			
-			while(resultSetPersonas.next()) {
-				todasPersonas.add(construirServices(resultSetPersonas));
+			while(resultSetServices.next()) {
+				allServices.add(construirServices(resultSetServices));
 			}
 			
 			conn.close();
 			
-			return todasPersonas;
+			return allServices;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

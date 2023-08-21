@@ -20,9 +20,10 @@ public class ServiceRequest {
 	
 	
 	
-	public ServiceRequest( String serviceNotice, String serviceName, String addressString,
+	public ServiceRequest(int serviceRequestId, String serviceNotice, String serviceName, String addressString,
 			String requestDescription, String mediaUrl) {
 		super();
+		this.serviceRequestId = serviceRequestId;
 		this.serviceNotice = serviceNotice;
 		this.serviceName = serviceName;
 		this.addressString = addressString;
