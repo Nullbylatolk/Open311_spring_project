@@ -45,6 +45,7 @@ export default function App() {
           <Route path="/request" element={<Request  />} />
           <Route path="/open311" element={<Home />} />
           <Route path="/request/create" element={<FormCreate />} />
+             <Route path="/service/create" element={<FormCreate />} />
         </Routes>
     </Router>
   );

@@ -1,9 +1,12 @@
-import React ,{Container, Form, FormGroup, Label, Col, Input, FormText, Button} from "reactstrap";
+import React ,{Container, Form, FormGroup, Label, Col, Input, FormText, Button, Row} from "reactstrap";
 
 
 function  ViewForm (){
 	return(
-	<Container className="bg-light border"    fluid = "md"    xs="auto">
+	<Container className="bg-light border mt-5"    fluid = "md"    xs="auto">
+	
+	  <Row xs="2">
+  <Col className="bg-light border">
 <Form>
   <FormGroup>
     <Label for="exampleEmail">
@@ -89,6 +92,8 @@ function  ViewForm (){
     Submit
   </Button>
 </Form>
+</Col>
+</Row>
 </Container>
 	);
 }

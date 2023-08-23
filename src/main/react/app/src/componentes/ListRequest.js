@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, ButtonGroup, Col, Row } from 'reactstrap';
 
 
 function ListRequest(){
@@ -12,6 +12,18 @@ useEffect(function() {
 	return(
 		
 		<>
+		
+<div class="container mt-5">
+			
+			  <Row>
+    <Col
+      className="bg-light border"
+      sm={{
+        offset: 1,
+        order: 2,
+        size: 10
+      }}
+    >
 		<h1>Request   <Button
    color="warning"
     href="/request/create"
@@ -52,7 +64,8 @@ Crear
 			{request.mediaUrl}
 			</td>
 			<td>
-			<div>
+			
+<ButtonGroup>
 			 <Button color="info">
     Editar
   </Button>
@@ -60,7 +73,7 @@ Crear
    <Button color="danger">
     Eliminar
   </Button>
-  </div>
+  </ButtonGroup>
 			</td>
 			</tr>
 			
@@ -69,7 +82,10 @@ Crear
 		</tbody>
 		
 		</Table>
-		
+		    </Col>
+  </Row>
+
+		</div>
 		</>
 		
 		
