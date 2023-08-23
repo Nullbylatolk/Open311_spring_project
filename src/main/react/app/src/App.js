@@ -1,25 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import ListRequest from "./componentes/ListRequest";
+import ListService from "./componentes/ListService";
+import Carrusel from "./componentes/Carrusel";
+import ViewForm from "./componentes/ViewForm";
+import React ,{Nav,NavItem, NavLink, Card, CardBody, CardTitle, CardText, CardSubtitle, Button} from "reactstrap";
+import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
 
-function App() {
+export default function App() {
+	
+	
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<Router>
+   <Nav
+  fill
+  tabs
+>
+  <NavItem>
+    <NavLink
+      active
+      href="/open311"
+    >
+      Open311
+    </NavLink>
+  </NavItem>
+  <NavItem>
+    <NavLink href="/request"  active>
+      Request
+    </NavLink>
+  </NavItem>
+  <NavItem>
+    <NavLink
+      active
+      href="/services"
+    >
+      Service
+    </NavLink>
+  </NavItem>
+  
+  
+  
+  
+</Nav>
+         <Routes>
+         <Route path="/services" element={<Service />} />
+          <Route path="/request" element={<Request  />} />
+          <Route path="/open311" element={<Home />} />
+          <Route path="/request/create" element={<FormCreate />} />
+        </Routes>
+    </Router>
   );
 }
 
-export default App;
+function Home() {
+  return (
+	 <Carrusel/>
+  );
+}
+
+function Request(){
+	
+	return(
+		<ListRequest/>
+	);
+}
+
+function Service(){
+	return (
+		<ListService/>
+	);
+}
+
+function FormCreate(){
+	return (
+		
+		<ViewForm/>
+		
+	);
+}
+
+

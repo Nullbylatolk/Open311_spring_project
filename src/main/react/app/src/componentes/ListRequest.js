@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
+
 
 function ListRequest(){
 	const [requests, setRequests] = useState([]);
 useEffect(function() {	
-	fetch("api/v2/requests/")
+	fetch("/api/v2/requests/")
 	.then(response => response.json())
 	.then(response => setRequests(response));
 	},[]);
 	return(
 		
 		<>
-		<h1>Request</h1>
+		<h1>Request   <Button
+   color="warning"
+    href="/request/create"
+    tag="a"
+  >
+Crear
+  </Button></h1>
+		
 		<Table hover>
 		<thead>
 		<tr>
@@ -20,6 +28,7 @@ useEffect(function() {
 		<th>Adress</th>
 		<th>Description</th>
 		<th>URL</th>
+		<td>Accions</td>
 		</tr>
 		
 		</thead>
@@ -42,6 +51,17 @@ useEffect(function() {
 				<td>
 			{request.mediaUrl}
 			</td>
+			<td>
+			<div>
+			 <Button color="info">
+    Editar
+  </Button>
+  {' '}
+   <Button color="danger">
+    Eliminar
+  </Button>
+  </div>
+			</td>
 			</tr>
 			
 		))}
@@ -58,6 +78,5 @@ useEffect(function() {
 	
 	
 }
-
 
 export default ListRequest;
