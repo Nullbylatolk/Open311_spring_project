@@ -38,10 +38,10 @@ private ServicesRequestDAOInterface servicesRequestDAO;
 	}
 	
 	
-	@PostMapping(path= "/",produces = "application/json")
-	public ResponseEntity<String> createRequest(@RequestBody ServiceRequest request) {
+	@PostMapping(path= "/")
+	public String createRequest(@RequestBody ServiceRequest request) {
 	    getServiceRequestDAO().insertarRequest(request);
-	    return ResponseEntity.ok("request insertado." + request);
+	    return "{\"status\": \"success\"}";
 	}
 	
 	
