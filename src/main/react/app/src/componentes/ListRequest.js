@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, ButtonGroup, Col, Row } from 'reactstrap';
-
+import { Table, Button, ButtonGroup, Col, Row, Container } from 'reactstrap';
+import DeleteRequest from './DeleteRequest';
 
 function ListRequest(){
 	const [requests, setRequests] = useState([]);
@@ -13,16 +13,15 @@ useEffect(function() {
 		
 		<>
 		
-<div class="container mt-5">
-			
+<div class="container-lg mt-5">
+			<Container
+			className="bg-light border"
+    fluid="xl"
+			>
 			  <Row>
     <Col
       className="bg-light border"
-      sm={{
-        offset: 1,
-        order: 2,
-        size: 10
-      }}
+
     >
 		<h1>Request   <Button
    color="warning"
@@ -65,15 +64,9 @@ Crear
 			</td>
 			<td>
 			
-<ButtonGroup>
-			 <Button color="info">
-    Editar
-  </Button>
-  {' '}
-   <Button color="danger">
-    Eliminar
-  </Button>
-  </ButtonGroup>
+<DeleteRequest resourceId={request.serviceRequestId} />
+  
+
 			</td>
 			</tr>
 			
@@ -84,6 +77,8 @@ Crear
 		</Table>
 		    </Col>
   </Row>
+  
+  </Container>
 
 		</div>
 		</>

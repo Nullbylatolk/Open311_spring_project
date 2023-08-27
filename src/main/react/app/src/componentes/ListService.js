@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Col, Row, Button, ButtonGroup } from 'reactstrap';
+import { Table, Col, Row, Button, ButtonGroup, Container } from 'reactstrap';
+import DeleteService from './DeleteService';
 
 
 function ListService(){
@@ -13,20 +14,18 @@ useEffect(function() {
 		
 		<>
 		<div class="container mt-5">
-			
+			<Container
+			className="bg-light border"
+    fluid="xl"
+			>
 			  <Row>
     <Col
       className="bg-light border"
-      sm={{
-        offset: 1,
-        order: 2,
-        size: 10
-      }}
     >
 		
 		<h1>Service  <Button
    color="warning"
-    href="/service/create"
+    href="/services/create"
     tag="a"
   >
 Crear
@@ -63,15 +62,7 @@ Crear
 			</td>
 			<td>
 			
-<ButtonGroup>
-			 <Button color="info">
-    Editar
-  </Button>
-  {' '}
-   <Button color="danger">
-    Eliminar
-  </Button>
-  </ButtonGroup>
+<DeleteService resourceId={service.service_id} />
 			</td>
 			</tr>
 			
@@ -82,7 +73,7 @@ Crear
 		</Table>
 			    </Col>
   </Row>
-
+</Container>
 		</div>
 		</>
 		
