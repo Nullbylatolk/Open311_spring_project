@@ -54,10 +54,22 @@ public class ServicesController {
 	    
 	}
 	
+	
+    @GetMapping("/{id}")
+    public ResponseEntity<Services> getService(@PathVariable int id) {
+        Services service = servicesDAO.buscarServicePorId(id);
+
+        if (service != null) {
+            return ResponseEntity.ok(service);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+	
 	@PutMapping("/{id}")
     public ResponseEntity<String> actualizarService(@PathVariable int id, @RequestBody Services service) {
         getServicesDAO().actualizarService(id, service);
-        return ResponseEntity.ok("Servicio actualizado exitosamente.");
+        return ResponseEntity.ok().body("{\"message\": \"Request actualizado exitosamente.\"}");
     }
 	
 	

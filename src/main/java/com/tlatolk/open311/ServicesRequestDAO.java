@@ -176,7 +176,36 @@ public class ServicesRequestDAO implements ServicesRequestDAOInterface {
 
 	
 	
-	
+	  public ServiceRequest buscarRequestPorId(int id) {
+	        Connection conn = null;
+	        try {
+	            conn = obtenerConexion();
+	            String query = "SELECT rs.service_request_id, rs.service_notice, s.service_name, s.service_code, rs.address_string, rs.request_description, rs.media_url " +
+	                           "FROM request_services rs " +
+	                           "JOIN services s ON rs.service_id = s.service_id " +
+	                           "WHERE rs.service_request_id = ?";
+	            PreparedStatement statement = conn.prepareStatement(query);
+	            statement.setInt(1, id);
+	            ResultSet resultSet = statement.executeQuery();
+
+	            if (resultSet.next()) {
+	                ServiceRequest request = construirServicesRequest(resultSet);
+	                return request;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (conn != null) {
+	                try {
+	                    conn.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+
+	        return null; // Si no se encuentra el request, devuelve null
+	    }
 	
 	
 

@@ -18,9 +18,10 @@ public class Services {
 
 
 
-	public Services( String service_code, String service_name, String description, 
+	public Services( int service_id, String service_code, String service_name, String description, 
 			String group, String keywords) {
 		super();
+		this.service_id = service_id;
 		this.service_code = service_code;
 		this.service_name = service_name;
 		this.description = description;

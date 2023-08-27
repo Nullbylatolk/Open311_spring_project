@@ -11,4 +11,6 @@ public interface ServicesRequestDAOInterface {
 	public void eliminarRequest(int id) ;
 	
 	public void actualizarRequest(int id, ServiceRequest request);
+	
+	public ServiceRequest buscarRequestPorId(int id);
 }

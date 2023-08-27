@@ -36,6 +36,7 @@ public class ServicesDAO implements ServicesDAOInterface{
 	
 	private Services construirServices(ResultSet resultSetServices) throws SQLException{
 		return new Services(
+				resultSetServices.getInt("service_id"),
 				resultSetServices.getString("service_code"),
 				resultSetServices.getString("service_name"),
 				resultSetServices.getString("service_description"),
@@ -252,6 +253,41 @@ public class ServicesDAO implements ServicesDAOInterface{
 	
 	
 	
+	
+	//Buscar un servicio 
+	 public Services buscarServicePorId(int id) {
+	        Connection conn = null;
+	        try {
+	            conn = obtenerConexion();
+	            String query = "SELECT s.*, g.group_name, GROUP_CONCAT(k.keyword_name SEPARATOR ', ') as keywords " +
+	                           "FROM services s " +
+	                           "LEFT JOIN group_tb g ON s.group_id = g.group_id " +
+	                           "LEFT JOIN service_keywords sk ON s.service_id = sk.service_id " +
+	                           "LEFT JOIN Keywords k ON sk.keyword_id = k.keyword_id " +
+	                           "WHERE s.service_id = ? " +
+	                           "GROUP BY s.service_id";
+	            PreparedStatement statement = conn.prepareStatement(query);
+	            statement.setInt(1, id);
+	            ResultSet resultSet = statement.executeQuery();
+
+	            if (resultSet.next()) {
+	                Services service = construirServices(resultSet);
+	                return service;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (conn != null) {
+	                try {
+	                    conn.close();
+	                } catch (SQLException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
+
+	        return null; // Si no se encuentra el servicio, devuelve null
+	    }
 	
 	//obeter conexion
 	private Connection obtenerConexion() throws SQLException {

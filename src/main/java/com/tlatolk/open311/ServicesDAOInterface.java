@@ -13,4 +13,7 @@ public interface ServicesDAOInterface {
 	public void eliminarService(int id) ;
 	
 	public void actualizarService(int id,Services service);
+	
+	
+	public Services buscarServicePorId(int id);
 }

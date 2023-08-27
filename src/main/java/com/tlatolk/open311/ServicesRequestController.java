@@ -55,12 +55,24 @@ private ServicesRequestDAOInterface servicesRequestDAO;
 	
 	
 	
-	@PutMapping("/{id}")
-    public ResponseEntity<String> updateRequest(@PathVariable int id, @RequestBody ServiceRequest request) {
-        getServiceRequestDAO().actualizarRequest(id, request);
-        return ResponseEntity.ok("Request actualizado exitosamente.");
+	@GetMapping("/{id}")
+    public ResponseEntity<ServiceRequest> getService(@PathVariable int id) {
+        ServiceRequest request = getServiceRequestDAO().buscarRequestPorId(id);
+        
+        if (request != null) {
+            return ResponseEntity.ok(request);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 	
+	
+    @PutMapping(path = "/{id}", produces = "application/json")
+    public ResponseEntity<Object> updateRequest(@PathVariable int id, @RequestBody ServiceRequest request) {
+        getServiceRequestDAO().actualizarRequest(id, request);
+        return ResponseEntity.ok().body("{\"message\": \"Request actualizado exitosamente.\"}");
+    }
+    
 	
 	
 	

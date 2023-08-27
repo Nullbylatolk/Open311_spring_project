@@ -4,6 +4,9 @@ import Carrusel from "./componentes/Carrusel";
 import ViewForm from "./componentes/ViewForm";
 import React ,{Nav,NavItem, NavLink, Card, CardBody, CardTitle, CardText, CardSubtitle, Button} from "reactstrap";
 import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+import ServiceForm from "./componentes/ServiceForm";
+import EditRequest from "./componentes/EditRequest";
+import EditService from "./componentes/EditService";
 
 export default function App() {
 	
@@ -45,7 +48,9 @@ export default function App() {
           <Route path="/request" element={<Request  />} />
           <Route path="/open311" element={<Home />} />
           <Route path="/request/create" element={<FormCreate />} />
-             <Route path="/service/create" element={<FormCreate />} />
+             <Route path="/services/create" element={<ServiceCreate />} />
+             <Route path="/request/edit" element={<UpRequest />}/>
+                    <Route path="/services/edit" element={<UpService />}/>
         </Routes>
     </Router>
   );
@@ -78,4 +83,26 @@ function FormCreate(){
 	);
 }
 
+
+function ServiceCreate(){
+	return (
+		<ServiceForm/>
+	);
+}
+
+
+function UpRequest(){
+	return(
+		<EditRequest/>
+	);
+}
+
+
+function UpService(){
+	return (
+		
+		<EditService/>
+	);
+	
+}
 
